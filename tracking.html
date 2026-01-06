@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background-color: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .app-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .header {
+      background-color: white;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 16px 24px;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      background-color: #3b82f6;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .company-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+      color: #1e293b;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      color: #1e293b;
+      text-decoration: none;
+    }
+
+    .nav-btn:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-btn.active {
+      font-weight: 600;
+      color: #3b82f6;
+    }
+
+    .main-content {
+      width: 100%;
+      min-height: calc(100% - 73px);
+      padding: 48px 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .container-small {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 48px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .tracking-detail {
+      background: white;
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1e293b;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background-color: #3b82f6;
+      color: white;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      background-color: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      color: #3b82f6;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 24px;
+      padding: 0;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+
+    .status-badge {
+      padding: 8px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .detail-label {
+      font-size: 12px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .detail-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background-color: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 32px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .timeline {
+      margin-top: 32px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .timeline-dot::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      width: 2px;
+      height: 40px;
+      background: #e5e7eb;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item:last-child .timeline-dot::after {
+      display: none;
+    }
+
+    .timeline-content {
+      flex: 1;
+      padding-bottom: 8px;
+    }
+
+    .timeline-status {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+    }
+
+    .timeline-location {
+      font-size: 14px;
+      color: #64748b;
+      margin: 0 0 2px 0;
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .shipments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .shipment-card {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .shipment-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .shipment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+
+    .shipment-id {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+      color: #1e293b;
+    }
+
+    .shipment-route {
+      font-size: 14px;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .shipment-location {
+      font-size: 12px;
+      color: #64748b;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-btn {
+        font-size: 14px;
+        padding: 6px 8px;
+      }
+
+      .tracking-detail {
+        padding: 24px;
+      }
+    }
+  </style>
+  <div class="app-wrapper">
+   <header class="header">
+    <div class="header-content">
+     <div class="logo-section">
+      <div class="logo">
+       <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
+       </svg>
+      </div>
+      <h1 class="company-name">LogiTrack Pro</h1>
+     </div>
+     <nav class="nav-links"><a href="home.html" class="nav-btn">Home</a> <a href="dashboard.html" class="nav-btn">Dashboard</a> <a href="tracking.html" class="nav-btn active">Track</a> <a href="help.html" class="nav-btn">Help</a>
+     </nav>
+    </div>
+   </header>
+   <main class="main-content">
+    <div class="container" id="trackingView">
+     <div style="text-align: center; margin-bottom: 48px;">
+      <h2 style="font-size: 40px; font-weight: 800; color: #1e293b; margin-bottom: 16px;">Track Your Shipment</h2>
+      <p style="font-size: 18px; color: #64748b;">Enter your tracking number to see real-time updates</p>
+     </div>
+     <div class="container-small">
+      <div class="stat-card">
+       <form id="trackingForm">
+        <div class="form-group"><label class="form-label" for="trackingNumber">Tracking Number</label> <input type="text" id="trackingNumber" class="form-input" placeholder="e.g., SH-001" required>
+        </div><button type="submit" class="btn-primary">Track Shipment</button>
+       </form>
+      </div>
+     </div>
+     <div style="margin-top: 48px;">
+      <h3 style="font-size: 24px; font-weight: 700; color: #1e293b; margin-bottom: 24px;">Recent Shipments</h3>
+      <div class="shipments-grid"><a href="tracking.html?id=SH-001" class="shipment-card">
+        <div class="shipment-header">
+         <div>
+          <p class="shipment-id">SH-001</p>
+          <p class="shipment-route">New York → Los Angeles</p>
+         </div><span class="status-badge" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6; padding: 4px 12px; font-size: 12px;"> In Transit </span>
+        </div>
+        <div class="progress-bar" style="height: 6px; margin: 12px 0;">
+         <div class="progress-fill" style="width: 65%; background-color: #3b82f6;"></div>
+        </div><p class="shipment-location">Current: Denver, CO</p></a> <a href="tracking.html?id=SH-002" class="shipment-card">
+        <div class="shipment-header">
+         <div>
+          <p class="shipment-id">SH-002</p>
+          <p class="shipment-route">Chicago → Miami</p>
+         </div><span class="status-badge" style="background-color: rgba(16, 185, 129, 0.2); color: #10b981; padding: 4px 12px; font-size: 12px;"> Delivered </span>
+        </div>
+        <div class="progress-bar" style="height: 6px; margin: 12px 0;">
+         <div class="progress-fill" style="width: 100%; background-color: #10b981;"></div>
+        </div><p class="shipment-location">Current: Miami, FL</p></a> <a href="tracking.html?id=SH-003" class="shipment-card">
+        <div class="shipment-header">
+         <div>
+          <p class="shipment-id">SH-003</p>
+          <p class="shipment-route">Seattle → Boston</p>
+         </div><span class="status-badge" style="background-color: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 4px 12px; font-size: 12px;"> Processing </span>
+        </div>
+        <div class="progress-bar" style="height: 6px; margin: 12px 0;">
+         <div class="progress-fill" style="width: 20%; background-color: #f59e0b;"></div>
+        </div><p class="shipment-location">Current: Seattle, WA</p></a> <a href="tracking.html?id=SH-004" class="shipment-card">
+        <div class="shipment-header">
+         <div>
+          <p class="shipment-id">SH-004</p>
+          <p class="shipment-route">Dallas → Phoenix</p>
+         </div><span class="status-badge" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6; padding: 4px 12px; font-size: 12px;"> In Transit </span>
+        </div>
+        <div class="progress-bar" style="height: 6px; margin: 12px 0;">
+         <div class="progress-fill" style="width: 45%; background-color: #3b82f6;"></div>
+        </div><p class="shipment-location">Current: Albuquerque, NM</p></a>
+      </div>
+     </div>
+    </div>
+    <div class="container" id="detailView" style="display: none;"><!-- Detail view will be populated by JavaScript -->
+    </div>
+   </main>
+  </div>
+  <script>
+    const shipments = {
+      'SH-001': {
+        id: 'SH-001',
+        origin: 'New York',
+        destination: 'Los Angeles',
+        status: 'In Transit',
+        progress: 65,
+        currentLocation: 'Denver, CO',
+        estimatedDelivery: '2024-01-25',
+        carrier: 'Express Logistics',
+        weight: '45 lbs',
+        color: '#3b82f6',
+        timeline: [
+          { status: 'Order Placed', location: 'New York, NY', date: '2024-01-20 09:00 AM', completed: true },
+          { status: 'Picked Up', location: 'New York, NY', date: '2024-01-20 02:30 PM', completed: true },
+          { status: 'In Transit', location: 'Denver, CO', date: '2024-01-22 11:15 AM', completed: true },
+          { status: 'Out for Delivery', location: 'Los Angeles, CA', date: 'Pending', completed: false },
+          { status: 'Delivered', location: 'Los Angeles, CA', date: 'Pending', completed: false }
+        ]
+      },
+      'SH-002': {
+        id: 'SH-002',
+        origin: 'Chicago',
+        destination: 'Miami',
+        status: 'Delivered',
+        progress: 100,
+        currentLocation: 'Miami, FL',
+        estimatedDelivery: '2024-01-21',
+        carrier: 'FastTrack Shipping',
+        weight: '32 lbs',
+        color: '#10b981',
+        timeline: [
+          { status: 'Order Placed', location: 'Chicago, IL', date: '2024-01-18 10:00 AM', completed: true },
+          { status: 'Picked Up', location: 'Chicago, IL', date: '2024-01-18 03:00 PM', completed: true },
+          { status: 'In Transit', location: 'Atlanta, GA', date: '2024-01-20 08:00 AM', completed: true },
+          { status: 'Out for Delivery', location: 'Miami, FL', date: '2024-01-21 07:00 AM', completed: true },
+          { status: 'Delivered', location: 'Miami, FL', date: '2024-01-21 02:45 PM', completed: true }
+        ]
+      },
+      'SH-003': {
+        id: 'SH-003',
+        origin: 'Seattle',
+        destination: 'Boston',
+        status: 'Processing',
+        progress: 20,
+        currentLocation: 'Seattle, WA',
+        estimatedDelivery: '2024-01-28',
+        carrier: 'Prime Freight',
+        weight: '28 lbs',
+        color: '#f59e0b',
+        timeline: [
+          { status: 'Order Placed', location: 'Seattle, WA', date: '2024-01-23 01:00 PM', completed: true },
+          { status: 'Picked Up', location: 'Seattle, WA', date: 'Pending', completed: false },
+          { status: 'In Transit', location: 'TBD', date: 'Pending', completed: false },
+          { status: 'Out for Delivery', location: 'Boston, MA', date: 'Pending', completed: false },
+          { status: 'Delivered', location: 'Boston, MA', date: 'Pending', completed: false }
+        ]
+      },
+      'SH-004': {
+        id: 'SH-004',
+        origin: 'Dallas',
+        destination: 'Phoenix',
+        status: 'In Transit',
+        progress: 45,
+        currentLocation: 'Albuquerque, NM',
+        estimatedDelivery: '2024-01-24',
+        carrier: 'Swift Transport',
+        weight: '52 lbs',
+        color: '#3b82f6',
+        timeline: [
+          { status: 'Order Placed', location: 'Dallas, TX', date: '2024-01-21 11:00 AM', completed: true },
+          { status: 'Picked Up', location: 'Dallas, TX', date: '2024-01-21 04:00 PM', completed: true },
+          { status: 'In Transit', location: 'Albuquerque, NM', date: '2024-01-23 09:30 AM', completed: true },
+          { status: 'Out for Delivery', location: 'Phoenix, AZ', date: 'Pending', completed: false },
+          { status: 'Delivered', location: 'Phoenix, AZ', date: 'Pending', completed: false }
+        ]
+      }
+    };
+
+    // Check URL for shipment ID
+    const urlParams = new URLSearchParams(window.location.search);
+    const shipmentId = urlParams.get('id');
+
+    if (shipmentId && shipments[shipmentId]) {
+      showShipmentDetail(shipments[shipmentId]);
+    }
+
+    document.getElementById('trackingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const trackingNumber = document.getElementById('trackingNumber').value.trim().toUpperCase();
+      
+      if (shipments[trackingNumber]) {
+        window.location.href = 'tracking.html?id=' + trackingNumber;
+      } else {
+        const input = document.getElementById('trackingNumber');
+        input.style.borderColor = '#ef4444';
+        input.value = '';
+        input.placeholder = 'Tracking number not found. Try: SH-001';
+        setTimeout(() => {
+          input.style.borderColor = '#e5e7eb';
+          input.placeholder = 'e.g., SH-001';
+        }, 3000);
+      }
+    });
+
+    function showShipmentDetail(shipment) {
+      document.getElementById('trackingView').style.display = 'none';
+      const detailView = document.getElementById('detailView');
+      detailView.style.display = 'block';
+      
+      detailView.innerHTML = `
+        <a href="tracking.html" class="back-btn">
+          <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 10H5M5 10L10 5M5 10L10 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to All Shipments
+        </a>
+
+        <div class="tracking-detail">
+          <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 16px; margin-bottom: 32px;">
+            <div>
+              <h2 style="font-size: 32px; font-weight: 800; color: #1e293b; margin: 0 0 8px 0;">Tracking: ${shipment.id}</h2>
+              <p style="font-size: 18px; color: #64748b; margin: 0;">${shipment.origin} → ${shipment.destination}</p>
+            </div>
+            <span class="status-badge" style="background-color: ${shipment.color}20; color: ${shipment.color};">
+              ${shipment.status}
+            </span>
+          </div>
+
+          <div class="detail-grid">
+            <div>
+              <p class="detail-label">Current Location</p>
+              <p class="detail-value">${shipment.currentLocation}</p>
+            </div>
+            <div>
+              <p class="detail-label">Est. Delivery</p>
+              <p class="detail-value">${shipment.estimatedDelivery}</p>
+            </div>
+            <div>
+              <p class="detail-label">Carrier</p>
+              <p class="detail-value">${shipment.carrier}</p>
+            </div>
+            <div>
+              <p class="detail-label">Weight</p>
+              <p class="detail-value">${shipment.weight}</p>
+            </div>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: ${shipment.progress}%; background-color: ${shipment.color};"></div>
+          </div>
+          <p style="font-size: 14px; color: #64748b; margin-top: 8px; text-align: right;">${shipment.progress}% Complete</p>
+
+          <div class="timeline">
+            <h3 style="font-size: 20px; font-weight: 700; color: #1e293b; margin-bottom: 24px;">Shipment Timeline</h3>
+            ${shipment.timeline.map((event, index) => `
+              <div class="timeline-item">
+                <div class="timeline-dot" style="background-color: ${event.completed ? shipment.color : '#e5e7eb'}; border: 4px solid white; box-shadow: 0 0 0 2px ${event.completed ? shipment.color : '#e5e7eb'};">
+                  ${event.completed ? `
+                    <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 8L6 11L13 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  ` : ''}
+                </div>
+                <div class="timeline-content">
+                  <p class="timeline-status" style="color: ${event.completed ? '#1e293b' : '#64748b'};">${event.status}</p>
+                  <p class="timeline-location">${event.location}</p>
+                  <p class="timeline-date">${event.date}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

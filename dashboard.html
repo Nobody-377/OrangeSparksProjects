@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>    
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background-color: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .app-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .header {
+      background-color: white;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 16px 24px;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      background-color: #3b82f6;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .company-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+      color: #1e293b;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      color: #1e293b;
+      text-decoration: none;
+    }
+
+    .nav-btn:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-btn.active {
+      font-weight: 600;
+      color: #3b82f6;
+    }
+
+    .main-content {
+      width: 100%;
+      min-height: calc(100% - 73px);
+      padding: 48px 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 32px 0;
+      color: #1e293b;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0;
+      color: #1e293b;
+    }
+
+    .stat-trend {
+      font-size: 12px;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .filter-section {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 24px;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .filter-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .filter-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      min-width: 80px;
+    }
+
+    .filter-btn {
+      background: white;
+      border: none;
+      color: #475569;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .filter-btn:hover {
+      color: #1e293b;
+      background-color: #f8fafc;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    }
+
+    .shipments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .shipment-card {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .shipment-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .shipment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+
+    .shipment-id {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+      color: #1e293b;
+    }
+
+    .shipment-route {
+      font-size: 14px;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .status-badge {
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background-color: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .shipment-location {
+      font-size: 12px;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .form-input {
+      padding: 10px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 20px;
+      font-size: 14px;
+      transition: all 0.2s;
+      width: 280px;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-btn {
+        font-size: 14px;
+        padding: 6px 8px;
+      }
+
+      .form-input {
+        width: 100%;
+      }
+    }
+  </style>
+  <div class="app-wrapper">
+   <header class="header">
+    <div class="header-content">
+     <div class="logo-section">
+      <div class="logo">
+       <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
+       </svg>
+      </div>
+      <h1 class="company-name">LogiTrack Pro</h1>
+     </div>
+     <nav class="nav-links"><a href="home.html" class="nav-btn">Home</a> <a href="dashboard.html" class="nav-btn active">Dashboard</a> <a href="tracking.html" class="nav-btn">Track</a> <a href="help.html" class="nav-btn">Help</a>
+     </nav>
+    </div>
+   </header>
+   <main class="main-content">
+    <div class="container">
+     <h2 class="page-title">Dashboard Overview</h2>
+     <div class="stats-grid">
+      <div class="stat-card">
+       <p class="stat-label">Total Shipments</p>
+       <p class="stat-value">1,247</p>
+       <p class="stat-trend" style="color: #10b981;">�� 12% from last month</p>
+      </div>
+      <div class="stat-card">
+       <p class="stat-label">In Transit</p>
+       <p class="stat-value">342</p>
+       <p class="stat-trend" style="color: #3b82f6;">Active shipments</p>
+      </div>
+      <div class="stat-card">
+       <p class="stat-label">Delivered</p>
+       <p class="stat-value">891</p>
+       <p class="stat-trend" style="color: #10b981;">98.5% on time</p>
+      </div>
+      <div class="stat-card">
+       <p class="stat-label">Processing</p>
+       <p class="stat-value">14</p>
+       <p class="stat-trend" style="color: #64748b;">Awaiting dispatch</p>
+      </div>
+     </div>
+     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 16px;">
+      <h3 style="font-size: 24px; font-weight: 700; color: #1e293b; margin: 0;">All Shipments</h3>
+      <form style="display: flex; gap: 8px;"><input type="text" id="shipmentSearch" class="form-input" placeholder="Search by ID, location, or carrier..."> <button type="submit" class="filter-btn" style="padding: 10px 16px;">
+        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="2" /> <path d="M11 11L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg></button>
+      </form>
+     </div>
+     <div class="filter-section">
+      <div class="filter-group"><span class="filter-label">Status</span> <button class="filter-btn active" data-filter="status" data-value="all">All</button> <button class="filter-btn" data-filter="status" data-value="In Transit">In Transit</button> <button class="filter-btn" data-filter="status" data-value="Delivered">Delivered</button> <button class="filter-btn" data-filter="status" data-value="Processing">Processing</button> <button class="filter-btn" data-filter="status" data-value="Delayed">Delayed</button>
+      </div>
+      <div class="filter-group"><span class="filter-label">Date Range</span> <button class="filter-btn active" data-filter="date" data-value="all">All Time</button> <button class="filter-btn" data-filter="date" data-value="today">Today</button> <button class="filter-btn" data-filter="date" data-value="week">This Week</button> <button class="filter-btn" data-filter="date" data-value="month">This Month</button>
+      </div>
+      <div class="filter-group"><span class="filter-label">Sort By</span> <button class="filter-btn active" data-filter="sort" data-value="newest">Newest First</button> <button class="filter-btn" data-filter="sort" data-value="oldest">Oldest First</button>
+      </div>
+     </div>
+     <div class="shipments-grid" id="shipmentsGrid"><a href="tracking.html?id=SH-001" class="shipment-card" data-status="In Transit" data-date="2024-01-20">
+       <div class="shipment-header">
+        <div>
+         <p class="shipment-id">SH-001</p>
+         <p class="shipment-route">New York → Los Angeles</p>
+        </div><span class="status-badge" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6;"> In Transit </span>
+       </div>
+       <div class="progress-bar">
+        <div class="progress-fill" style="width: 65%; background-color: #3b82f6;"></div>
+       </div><p class="shipment-location">Current: Denver, CO</p></a> <a href="tracking.html?id=SH-002" class="shipment-card" data-status="Delivered" data-date="2024-01-18">
+       <div class="shipment-header">
+        <div>
+         <p class="shipment-id">SH-002</p>
+         <p class="shipment-route">Chicago → Miami</p>
+        </div><span class="status-badge" style="background-color: rgba(16, 185, 129, 0.2); color: #10b981;"> Delivered </span>
+       </div>
+       <div class="progress-bar">
+        <div class="progress-fill" style="width: 100%; background-color: #10b981;"></div>
+       </div><p class="shipment-location">Current: Miami, FL</p></a> <a href="tracking.html?id=SH-003" class="shipment-card" data-status="Processing" data-date="2024-01-23">
+       <div class="shipment-header">
+        <div>
+         <p class="shipment-id">SH-003</p>
+         <p class="shipment-route">Seattle → Boston</p>
+        </div><span class="status-badge" style="background-color: rgba(245, 158, 11, 0.2); color: #f59e0b;"> Processing </span>
+       </div>
+       <div class="progress-bar">
+        <div class="progress-fill" style="width: 20%; background-color: #f59e0b;"></div>
+       </div><p class="shipment-location">Current: Seattle, WA</p></a> <a href="tracking.html?id=SH-004" class="shipment-card" data-status="In Transit" data-date="2024-01-21">
+       <div class="shipment-header">
+        <div>
+         <p class="shipment-id">SH-004</p>
+         <p class="shipment-route">Dallas → Phoenix</p>
+        </div><span class="status-badge" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6;"> In Transit </span>
+       </div>
+       <div class="progress-bar">
+        <div class="progress-fill" style="width: 45%; background-color: #3b82f6;"></div>
+       </div><p class="shipment-location">Current: Albuquerque, NM</p></a>
+     </div>
+     <script>
+          let currentFilters = {
+            status: 'all',
+            date: 'all',
+            sort: 'newest'
+          };
+
+          // Store all shipments data
+          const allShipments = [
+            { id: 'SH-001', status: 'In Transit', date: '2024-01-20', route: 'New York → Los Angeles', location: 'Denver, CO', progress: 65, color: '#3b82f6' },
+            { id: 'SH-002', status: 'Delivered', date: '2024-01-18', route: 'Chicago → Miami', location: 'Miami, FL', progress: 100, color: '#10b981' },
+            { id: 'SH-003', status: 'Processing', date: '2024-01-23', route: 'Seattle → Boston', location: 'Seattle, WA', progress: 20, color: '#f59e0b' },
+            { id: 'SH-004', status: 'In Transit', date: '2024-01-21', route: 'Dallas → Phoenix', location: 'Albuquerque, NM', progress: 45, color: '#3b82f6' }
+          ];
+
+          // Handle filter button clicks
+          document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const filterType = this.getAttribute('data-filter');
+              const filterValue = this.getAttribute('data-value');
+              
+              // Update active state
+              document.querySelectorAll(`[data-filter="${filterType}"]`).forEach(b => {
+                b.classList.remove('active');
+              });
+              this.classList.add('active');
+              
+              // Update current filters
+              currentFilters[filterType] = filterValue;
+              
+              // Apply filters
+              applyFilters();
+            });
+          });
+
+          // Handle search
+          let searchTerm = '';
+          document.getElementById('shipmentSearch').addEventListener('input', function(e) {
+            searchTerm = e.target.value.toLowerCase();
+            applyFilters();
+          });
+
+          document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+          });
+
+          function applyFilters() {
+            const grid = document.getElementById('shipmentsGrid');
+            
+            // Filter shipments
+            let filteredShipments = allShipments.filter(shipment => {
+              // Status filter
+              if (currentFilters.status !== 'all' && shipment.status !== currentFilters.status) {
+                return false;
+              }
+              
+              // Date filter
+              if (currentFilters.date !== 'all') {
+                const cardDate = new Date(shipment.date);
+                const today = new Date('2024-01-23');
+                
+                if (currentFilters.date === 'today') {
+                  if (shipment.date !== '2024-01-23') return false;
+                } else if (currentFilters.date === 'week') {
+                  const weekAgo = new Date(today);
+                  weekAgo.setDate(weekAgo.getDate() - 7);
+                  if (cardDate < weekAgo) return false;
+                } else if (currentFilters.date === 'month') {
+                  const monthAgo = new Date(today);
+                  monthAgo.setMonth(monthAgo.getMonth() - 1);
+                  if (cardDate < monthAgo) return false;
+                }
+              }
+              
+              // Search filter
+              if (searchTerm) {
+                const searchText = `${shipment.id} ${shipment.route} ${shipment.location}`.toLowerCase();
+                if (!searchText.includes(searchTerm)) {
+                  return false;
+                }
+              }
+              
+              return true;
+            });
+            
+            // Sort shipments
+            if (currentFilters.sort === 'oldest') {
+              filteredShipments.sort((a, b) => new Date(a.date) - new Date(b.date));
+            } else {
+              filteredShipments.sort((a, b) => new Date(b.date) - new Date(a.date));
+            }
+            
+            // Clear and repopulate grid
+            grid.innerHTML = '';
+            
+            if (filteredShipments.length === 0) {
+              grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 48px;">No shipments found matching your filters.</p>';
+            } else {
+              filteredShipments.forEach(shipment => {
+                const statusBgColor = shipment.status === 'Delivered' ? 'rgba(16, 185, 129, 0.2)' :
+                                     shipment.status === 'Processing' ? 'rgba(245, 158, 11, 0.2)' :
+                                     'rgba(59, 130, 246, 0.2)';
+                
+                const card = document.createElement('a');
+                card.href = `tracking.html?id=${shipment.id}`;
+                card.className = 'shipment-card';
+                card.innerHTML = `
+                  <div class="shipment-header">
+                    <div>
+                      <p class="shipment-id">${shipment.id}</p>
+                      <p class="shipment-route">${shipment.route}</p>
+                    </div>
+                    <span class="status-badge" style="background-color: ${statusBgColor}; color: ${shipment.color};">
+                      ${shipment.status}
+                    </span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${shipment.progress}%; background-color: ${shipment.color};"></div>
+                  </div>
+                  <p class="shipment-location">Current: ${shipment.location}</p>
+                `;
+                grid.appendChild(card);
+              });
+            }
+          }
+        </script>
+    </div>
+   </main>
+  </div>
+</body>
+</html>
