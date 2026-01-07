@@ -57,10 +57,16 @@
     }
 
     .company-name {
-      font-size: 20px;
+      font-size: 25px;
       font-weight: 700;
       margin: 0;
       color: #1e293b;
+    }
+
+    @media (max-width: 768px) {
+      .company-name {
+        display: none;
+      }
     }
 
     .nav-links {
@@ -208,7 +214,7 @@
 
     .detail-value {
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 600;
       color: #1e293b;
     }
 
@@ -337,7 +343,7 @@
       margin: 0;
     }
 
-    @media (max-width: 740px) {
+    @media (max-width: 768px) {
       .nav-links {
         gap: 12px;
       }
@@ -352,17 +358,26 @@
       }
     }
   </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
   <div class="app-wrapper">
    <header class="header">
     <div class="header-content">
      <div class="logo-section">
       <div class="logo">
-       <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
+       <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
        </svg>
       </div>
-      <h1 class="company-name">LogiTrack Pro</h1>
+      <h1 class="company-name">Logitrack</h1>
      </div>
-     <nav class="nav-links"><a href="home.html" class="nav-btn">Home</a> <a href="dashboard.html" class="nav-btn">Dashboard</a> <a href="tracking.html" class="nav-btn active">Track</a> <a href="help.html" class="nav-btn">Help</a>
+     <nav class="nav-links">
+      <a href="home.html" class="nav-btn">Home</a> <a href="dashboard.html" class="nav-btn">Dashboard</a> <a href="tracking.html" class="nav-btn active">Track</a> <a href="help.html" class="nav-btn">Help</a>
      </nav>
     </div>
    </header>
@@ -375,143 +390,110 @@
      <div class="container-small">
       <div class="stat-card">
        <form id="trackingForm">
-        <div class="form-group"><label class="form-label" for="trackingNumber">Tracking Number</label> <input type="text" id="trackingNumber" class="form-input" placeholder="e.g., SH-001" required>
+        <div class="form-group">
+         <label class="form-label" for="trackingNumber">Tracking Number</label> <input type="text" id="trackingNumber" class="form-input" placeholder="e.g., SH-001" required>
         </div><button type="submit" class="btn-primary">Track Shipment</button>
        </form>
       </div>
      </div>
      <div style="margin-top: 48px;">
       <h3 style="font-size: 24px; font-weight: 700; color: #1e293b; margin-bottom: 24px;">Recent Shipments</h3>
-      <div class="shipments-grid"><a href="tracking.html?id=SH-001" class="shipment-card">
-        <div class="shipment-header">
-         <div>
-          <p class="shipment-id">SH-001</p>
-          <p class="shipment-route">New York → Los Angeles</p>
-         </div><span class="status-badge" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6; padding: 4px 12px; font-size: 12px;"> In Transit </span>
-        </div>
-        <div class="progress-bar" style="height: 6px; margin: 12px 0;">
-         <div class="progress-fill" style="width: 65%; background-color: #3b82f6;"></div>
-        </div><p class="shipment-location">Current: Denver, CO</p></a> <a href="tracking.html?id=SH-002" class="shipment-card">
-        <div class="shipment-header">
-         <div>
-          <p class="shipment-id">SH-002</p>
-          <p class="shipment-route">Chicago → Miami</p>
-         </div><span class="status-badge" style="background-color: rgba(16, 185, 129, 0.2); color: #10b981; padding: 4px 12px; font-size: 12px;"> Delivered </span>
-        </div>
-        <div class="progress-bar" style="height: 6px; margin: 12px 0;">
-         <div class="progress-fill" style="width: 100%; background-color: #10b981;"></div>
-        </div><p class="shipment-location">Current: Miami, FL</p></a> <a href="tracking.html?id=SH-003" class="shipment-card">
-        <div class="shipment-header">
-         <div>
-          <p class="shipment-id">SH-003</p>
-          <p class="shipment-route">Seattle → Boston</p>
-         </div><span class="status-badge" style="background-color: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 4px 12px; font-size: 12px;"> Processing </span>
-        </div>
-        <div class="progress-bar" style="height: 6px; margin: 12px 0;">
-         <div class="progress-fill" style="width: 20%; background-color: #f59e0b;"></div>
-        </div><p class="shipment-location">Current: Seattle, WA</p></a> <a href="tracking.html?id=SH-004" class="shipment-card">
-        <div class="shipment-header">
-         <div>
-          <p class="shipment-id">SH-004</p>
-          <p class="shipment-route">Dallas → Phoenix</p>
-         </div><span class="status-badge" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6; padding: 4px 12px; font-size: 12px;"> In Transit </span>
-        </div>
-        <div class="progress-bar" style="height: 6px; margin: 12px 0;">
-         <div class="progress-fill" style="width: 45%; background-color: #3b82f6;"></div>
-        </div><p class="shipment-location">Current: Albuquerque, NM</p></a>
+      <div class="shipments-grid" id="recentShipmentsGrid">
+       <p style="text-align: center; color: #64748b; padding: 48px; grid-column: 1/-1;">Loading shipments...</p>
       </div>
      </div>
     </div>
-    <div class="container" id="detailView" style="display: none;"><!-- Detail view will be populated by JavaScript -->
+    <div class="container" id="detailView" style="display: none;">
+     <!-- Detail view will be populated by JavaScript -->
     </div>
    </main>
   </div>
   <script>
-    const shipments = {
-      'SH-001': {
-        id: 'SH-001',
-        origin: 'New York',
-        destination: 'Los Angeles',
-        status: 'In Transit',
-        progress: 65,
-        currentLocation: 'Denver, CO',
-        estimatedDelivery: '2024-01-25',
-        carrier: 'Express Logistics',
-        weight: '45 lbs',
-        color: '#3b82f6',
-        timeline: [
-          { status: 'Order Placed', location: 'New York, NY', date: '2024-01-20 09:00 AM', completed: true },
-          { status: 'Picked Up', location: 'New York, NY', date: '2024-01-20 02:30 PM', completed: true },
-          { status: 'In Transit', location: 'Denver, CO', date: '2024-01-22 11:15 AM', completed: true },
-          { status: 'Out for Delivery', location: 'Los Angeles, CA', date: 'Pending', completed: false },
-          { status: 'Delivered', location: 'Los Angeles, CA', date: 'Pending', completed: false }
-        ]
-      },
-      'SH-002': {
-        id: 'SH-002',
-        origin: 'Chicago',
-        destination: 'Miami',
-        status: 'Delivered',
-        progress: 100,
-        currentLocation: 'Miami, FL',
-        estimatedDelivery: '2024-01-21',
-        carrier: 'FastTrack Shipping',
-        weight: '32 lbs',
-        color: '#10b981',
-        timeline: [
-          { status: 'Order Placed', location: 'Chicago, IL', date: '2024-01-18 10:00 AM', completed: true },
-          { status: 'Picked Up', location: 'Chicago, IL', date: '2024-01-18 03:00 PM', completed: true },
-          { status: 'In Transit', location: 'Atlanta, GA', date: '2024-01-20 08:00 AM', completed: true },
-          { status: 'Out for Delivery', location: 'Miami, FL', date: '2024-01-21 07:00 AM', completed: true },
-          { status: 'Delivered', location: 'Miami, FL', date: '2024-01-21 02:45 PM', completed: true }
-        ]
-      },
-      'SH-003': {
-        id: 'SH-003',
-        origin: 'Seattle',
-        destination: 'Boston',
-        status: 'Processing',
-        progress: 20,
-        currentLocation: 'Seattle, WA',
-        estimatedDelivery: '2024-01-28',
-        carrier: 'Prime Freight',
-        weight: '28 lbs',
-        color: '#f59e0b',
-        timeline: [
-          { status: 'Order Placed', location: 'Seattle, WA', date: '2024-01-23 01:00 PM', completed: true },
-          { status: 'Picked Up', location: 'Seattle, WA', date: 'Pending', completed: false },
-          { status: 'In Transit', location: 'TBD', date: 'Pending', completed: false },
-          { status: 'Out for Delivery', location: 'Boston, MA', date: 'Pending', completed: false },
-          { status: 'Delivered', location: 'Boston, MA', date: 'Pending', completed: false }
-        ]
-      },
-      'SH-004': {
-        id: 'SH-004',
-        origin: 'Dallas',
-        destination: 'Phoenix',
-        status: 'In Transit',
-        progress: 45,
-        currentLocation: 'Albuquerque, NM',
-        estimatedDelivery: '2024-01-24',
-        carrier: 'Swift Transport',
-        weight: '52 lbs',
-        color: '#3b82f6',
-        timeline: [
-          { status: 'Order Placed', location: 'Dallas, TX', date: '2024-01-21 11:00 AM', completed: true },
-          { status: 'Picked Up', location: 'Dallas, TX', date: '2024-01-21 04:00 PM', completed: true },
-          { status: 'In Transit', location: 'Albuquerque, NM', date: '2024-01-23 09:30 AM', completed: true },
-          { status: 'Out for Delivery', location: 'Phoenix, AZ', date: 'Pending', completed: false },
-          { status: 'Delivered', location: 'Phoenix, AZ', date: 'Pending', completed: false }
-        ]
-      }
-    };
+    let shipments = {};
 
-    // Check URL for shipment ID
-    const urlParams = new URLSearchParams(window.location.search);
-    const shipmentId = urlParams.get('id');
+    // Get recently viewed shipments from localStorage
+    function getRecentlyViewed() {
+      const recent = localStorage.getItem('recentlyViewedShipments');
+      return recent ? JSON.parse(recent) : [];
+    }
 
-    if (shipmentId && shipments[shipmentId]) {
-      showShipmentDetail(shipments[shipmentId]);
+    // Add shipment to recently viewed
+    function addToRecentlyViewed(shipmentId) {
+      let recent = getRecentlyViewed();
+      // Remove if already exists
+      recent = recent.filter(id => id !== shipmentId);
+      // Add to front
+      recent.unshift(shipmentId);
+      // Keep only last 4
+      recent = recent.slice(0, 4);
+      localStorage.setItem('recentlyViewedShipments', JSON.stringify(recent));
+    }
+
+    // Load shipments data from single tracking.json file
+    fetch('shipments.json')
+      .then(response => response.json())
+      .then(data => {
+        // Convert shipments array to object with IDs as keys
+        data.shipments.forEach(shipment => {
+          shipments[shipment.id] = shipment;
+        });
+        
+        // Get recently viewed shipment IDs
+        const recentIds = getRecentlyViewed();
+        
+        // If there are recently viewed shipments, show those
+        if (recentIds.length > 0) {
+          const recentShipments = recentIds.map(id => shipments[id]).filter(s => s);
+          renderRecentShipments(recentShipments);
+        } else {
+          // Otherwise show first 4 shipments
+          renderRecentShipments(data.shipments.slice(0, 4));
+        }
+        
+        // Check URL for shipment ID after data is loaded
+        const urlParams = new URLSearchParams(window.location.search);
+        const shipmentId = urlParams.get('id');
+        if (shipmentId && shipments[shipmentId]) {
+          addToRecentlyViewed(shipmentId);
+          showShipmentDetail(shipments[shipmentId]);
+        }
+      })
+      .catch(error => {
+        console.error('Error loading tracking data:', error);
+        document.getElementById('recentShipmentsGrid').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #ef4444; padding: 48px;">Error loading tracking data.</p>';
+      });
+
+    function renderRecentShipments(recentShipments) {
+      const grid = document.getElementById('recentShipmentsGrid');
+      grid.innerHTML = '';
+      
+      recentShipments.forEach(shipment => {
+        const statusBgColor = shipment.status === 'Delivered' ? 'rgba(16, 185, 129, 0.2)' :
+                              shipment.status === 'Processing' ? 'rgba(245, 158, 11, 0.2)' :
+                              shipment.status === 'Delayed' ? 'rgba(239, 68, 68, 0.2)' :
+                              'rgba(59, 130, 246, 0.2)';
+        
+        const card = document.createElement('a');
+        card.href = `tracking.html?id=${shipment.id}`;
+        card.className = 'shipment-card';
+        card.innerHTML = `
+          <div class="shipment-header">
+            <div>
+              <p class="shipment-id">${shipment.id}</p>
+              <p class="shipment-route" style="font-weight: 500;">${shipment.route}</p>
+              <p class="shipment-route" style="margin-top: 4px; font-weight: 500; color: #64748b;">${shipment.transport}</p>
+            </div>
+            <span class="status-badge" style="background-color: ${statusBgColor}; color: ${shipment.color}; padding: 4px 12px; font-size: 12px;">
+              ${shipment.status}
+            </span>
+          </div>
+          <div class="progress-bar" style="height: 6px; margin: 12px 0;">
+            <div class="progress-fill" style="width: ${shipment.progress}%; background-color: ${shipment.color};"></div>
+          </div>
+          <p class="shipment-location" style="font-weight: 500;">Current: ${shipment.location}</p>
+        `;
+        grid.appendChild(card);
+      });
     }
 
     document.getElementById('trackingForm').addEventListener('submit', function(e) {
@@ -532,10 +514,59 @@
       }
     });
 
+    function generateTimeline(shipment) {
+      // Generate a dynamic timeline based on progress
+      const timeline = [];
+      const parts = shipment.route.split(' → ');
+      const origin = parts[0];
+      const destination = parts[1];
+      
+      // Step 1: Package Picked Up
+      timeline.push({
+        status: 'Package Picked Up',
+        location: `${origin}`,
+        date: shipment.date + ' - 9:00 AM',
+        completed: true
+      });
+      
+      // Step 2: In Transit
+      if (shipment.progress >= 20) {
+        timeline.push({
+          status: 'In Transit',
+          location: shipment.location,
+          date: shipment.date + ' - 2:30 PM',
+          completed: shipment.progress >= 80
+        });
+      }
+      
+      // Step 3: Out for Delivery
+      timeline.push({
+        status: 'Out for Delivery',
+        location: `${destination}`,
+        date: shipment.status === 'Delivered' ? shipment.date + ' - 7:00 AM' : 'Expected Soon',
+        completed: shipment.status === 'Delivered'
+      });
+      
+      // Step 4: Delivered
+      timeline.push({
+        status: 'Delivered',
+        location: `${destination}`,
+        date: shipment.status === 'Delivered' ? shipment.date + ' - 3:20 PM' : 'Pending',
+        completed: shipment.status === 'Delivered'
+      });
+
+      return timeline;
+    }
+
     function showShipmentDetail(shipment) {
       document.getElementById('trackingView').style.display = 'none';
       const detailView = document.getElementById('detailView');
       detailView.style.display = 'block';
+      
+      const parts = shipment.route.split(' → ');
+      const origin = parts[0];
+      const destination = parts[1];
+      const timeline = generateTimeline(shipment);
       
       detailView.innerHTML = `
         <a href="tracking.html" class="back-btn">
@@ -549,7 +580,7 @@
           <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 16px; margin-bottom: 32px;">
             <div>
               <h2 style="font-size: 32px; font-weight: 800; color: #1e293b; margin: 0 0 8px 0;">Tracking: ${shipment.id}</h2>
-              <p style="font-size: 18px; color: #64748b; margin: 0;">${shipment.origin} → ${shipment.destination}</p>
+              <p style="font-size: 18px; color: #64748b; margin: 0;">${origin} → ${destination}</p>
             </div>
             <span class="status-badge" style="background-color: ${shipment.color}20; color: ${shipment.color};">
               ${shipment.status}
@@ -559,19 +590,23 @@
           <div class="detail-grid">
             <div>
               <p class="detail-label">Current Location</p>
-              <p class="detail-value">${shipment.currentLocation}</p>
+              <p class="detail-value">${shipment.location}</p>
             </div>
             <div>
-              <p class="detail-label">Est. Delivery</p>
-              <p class="detail-value">${shipment.estimatedDelivery}</p>
+              <p class="detail-label">Status</p>
+              <p class="detail-value">${shipment.status}</p>
             </div>
             <div>
-              <p class="detail-label">Carrier</p>
-              <p class="detail-value">${shipment.carrier}</p>
+              <p class="detail-label">Transport</p>
+              <p class="detail-value">${shipment.transport}</p>
             </div>
             <div>
-              <p class="detail-label">Weight</p>
-              <p class="detail-value">${shipment.weight}</p>
+              <p class="detail-label">Route</p>
+              <p class="detail-value">${origin} → ${destination}</p>
+            </div>
+            <div>
+              <p class="detail-label">Shipment Date</p>
+              <p class="detail-value">${shipment.date}</p>
             </div>
           </div>
 
@@ -582,7 +617,7 @@
 
           <div class="timeline">
             <h3 style="font-size: 20px; font-weight: 700; color: #1e293b; margin-bottom: 24px;">Shipment Timeline</h3>
-            ${shipment.timeline.map((event, index) => `
+            ${timeline.map((event, index) => `
               <div class="timeline-item">
                 <div class="timeline-dot" style="background-color: ${event.completed ? shipment.color : '#e5e7eb'}; border: 4px solid white; box-shadow: 0 0 0 2px ${event.completed ? shipment.color : '#e5e7eb'};">
                   ${event.completed ? `
@@ -602,6 +637,13 @@
         </div>
       `;
     }
+
+    document.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+              e.preventDefault();
+              window.history.back();
+            }
+          });
   </script>
 </body>
 </html>

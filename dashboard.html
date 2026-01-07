@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>    
-  <style>
+<style>
     body {
       box-sizing: border-box;
       margin: 0;
@@ -57,10 +57,16 @@
     }
 
     .company-name {
-      font-size: 20px;
+      font-size: 25px;
       font-weight: 700;
       margin: 0;
       color: #1e293b;
+    }
+
+    @media (max-width: 768px) {
+      .company-name {
+        display: none;
+      }
     }
 
     .nav-links {
@@ -106,44 +112,6 @@
       font-weight: 700;
       margin: 0 0 32px 0;
       color: #1e293b;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-
-    .stat-card {
-      background: white;
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .stat-label {
-      font-size: 14px;
-      color: #64748b;
-      margin-bottom: 8px;
-    }
-
-    .stat-value {
-      font-size: 32px;
-      font-weight: 700;
-      margin: 0;
-      color: #1e293b;
-    }
-
-    .stat-trend {
-      font-size: 12px;
-      margin-top: 8px;
-      font-weight: 600;
     }
 
     .filter-section {
@@ -284,7 +252,7 @@
       border-color: #3b82f6;
     }
 
-    @media (max-width: 740px) {
+    @media (max-width: 768px) {
       .nav-links {
         gap: 12px;
       }
@@ -307,7 +275,7 @@
        <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
        </svg>
       </div>
-      <h1 class="company-name">LogiTrack Pro</h1>
+      <h1 class="company-name">Logitrack</h1>
      </div>
      <nav class="nav-links"><a href="home.html" class="nav-btn">Home</a> <a href="dashboard.html" class="nav-btn active">Dashboard</a> <a href="tracking.html" class="nav-btn">Track</a> <a href="help.html" class="nav-btn">Help</a>
      </nav>
@@ -316,28 +284,6 @@
    <main class="main-content">
     <div class="container">
      <h2 class="page-title">Dashboard Overview</h2>
-     <div class="stats-grid">
-      <div class="stat-card">
-       <p class="stat-label">Total Shipments</p>
-       <p class="stat-value">1,247</p>
-       <p class="stat-trend" style="color: #10b981;">�� 12% from last month</p>
-      </div>
-      <div class="stat-card">
-       <p class="stat-label">In Transit</p>
-       <p class="stat-value">342</p>
-       <p class="stat-trend" style="color: #3b82f6;">Active shipments</p>
-      </div>
-      <div class="stat-card">
-       <p class="stat-label">Delivered</p>
-       <p class="stat-value">891</p>
-       <p class="stat-trend" style="color: #10b981;">98.5% on time</p>
-      </div>
-      <div class="stat-card">
-       <p class="stat-label">Processing</p>
-       <p class="stat-value">14</p>
-       <p class="stat-trend" style="color: #64748b;">Awaiting dispatch</p>
-      </div>
-     </div>
      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 16px;">
       <h3 style="font-size: 24px; font-weight: 700; color: #1e293b; margin: 0;">All Shipments</h3>
       <form style="display: flex; gap: 8px;"><input type="text" id="shipmentSearch" class="form-input" placeholder="Search by ID, location, or carrier..."> <button type="submit" class="filter-btn" style="padding: 10px 16px;">
@@ -353,43 +299,8 @@
       <div class="filter-group"><span class="filter-label">Sort By</span> <button class="filter-btn active" data-filter="sort" data-value="newest">Newest First</button> <button class="filter-btn" data-filter="sort" data-value="oldest">Oldest First</button>
       </div>
      </div>
-     <div class="shipments-grid" id="shipmentsGrid"><a href="tracking.html?id=SH-001" class="shipment-card" data-status="In Transit" data-date="2024-01-20">
-       <div class="shipment-header">
-        <div>
-         <p class="shipment-id">SH-001</p>
-         <p class="shipment-route">New York → Los Angeles</p>
-        </div><span class="status-badge" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6;"> In Transit </span>
-       </div>
-       <div class="progress-bar">
-        <div class="progress-fill" style="width: 65%; background-color: #3b82f6;"></div>
-       </div><p class="shipment-location">Current: Denver, CO</p></a> <a href="tracking.html?id=SH-002" class="shipment-card" data-status="Delivered" data-date="2024-01-18">
-       <div class="shipment-header">
-        <div>
-         <p class="shipment-id">SH-002</p>
-         <p class="shipment-route">Chicago → Miami</p>
-        </div><span class="status-badge" style="background-color: rgba(16, 185, 129, 0.2); color: #10b981;"> Delivered </span>
-       </div>
-       <div class="progress-bar">
-        <div class="progress-fill" style="width: 100%; background-color: #10b981;"></div>
-       </div><p class="shipment-location">Current: Miami, FL</p></a> <a href="tracking.html?id=SH-003" class="shipment-card" data-status="Processing" data-date="2024-01-23">
-       <div class="shipment-header">
-        <div>
-         <p class="shipment-id">SH-003</p>
-         <p class="shipment-route">Seattle → Boston</p>
-        </div><span class="status-badge" style="background-color: rgba(245, 158, 11, 0.2); color: #f59e0b;"> Processing </span>
-       </div>
-       <div class="progress-bar">
-        <div class="progress-fill" style="width: 20%; background-color: #f59e0b;"></div>
-       </div><p class="shipment-location">Current: Seattle, WA</p></a> <a href="tracking.html?id=SH-004" class="shipment-card" data-status="In Transit" data-date="2024-01-21">
-       <div class="shipment-header">
-        <div>
-         <p class="shipment-id">SH-004</p>
-         <p class="shipment-route">Dallas → Phoenix</p>
-        </div><span class="status-badge" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6;"> In Transit </span>
-       </div>
-       <div class="progress-bar">
-        <div class="progress-fill" style="width: 45%; background-color: #3b82f6;"></div>
-       </div><p class="shipment-location">Current: Albuquerque, NM</p></a>
+     <div class="shipments-grid" id="shipmentsGrid">
+      <p style="text-align: center; color: #64748b; padding: 48px;">Loading shipments...</p>
      </div>
      <script>
           let currentFilters = {
@@ -398,13 +309,20 @@
             sort: 'newest'
           };
 
-          // Store all shipments data
-          const allShipments = [
-            { id: 'SH-001', status: 'In Transit', date: '2024-01-20', route: 'New York → Los Angeles', location: 'Denver, CO', progress: 65, color: '#3b82f6' },
-            { id: 'SH-002', status: 'Delivered', date: '2024-01-18', route: 'Chicago → Miami', location: 'Miami, FL', progress: 100, color: '#10b981' },
-            { id: 'SH-003', status: 'Processing', date: '2024-01-23', route: 'Seattle → Boston', location: 'Seattle, WA', progress: 20, color: '#f59e0b' },
-            { id: 'SH-004', status: 'In Transit', date: '2024-01-21', route: 'Dallas → Phoenix', location: 'Albuquerque, NM', progress: 45, color: '#3b82f6' }
-          ];
+          // Load shipments data from external JSON file
+          let allShipments = [];
+
+          // Fetch shipment data from external JSON file
+          fetch('shipments.json')
+            .then(response => response.json())
+            .then(data => {
+              allShipments = data.shipments;
+              applyFilters(); // Initial render
+            })
+            .catch(error => {
+              console.error('Error loading shipments:', error);
+              document.getElementById('shipmentsGrid').innerHTML = '<p style="text-align: center; color: #ef4444; padding: 48px;">Error loading shipments data.</p>';
+            });
 
           // Handle filter button clicks
           document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -492,7 +410,9 @@
               filteredShipments.forEach(shipment => {
                 const statusBgColor = shipment.status === 'Delivered' ? 'rgba(16, 185, 129, 0.2)' :
                                      shipment.status === 'Processing' ? 'rgba(245, 158, 11, 0.2)' :
+                                     shipment.status ==='Delayed' ? 'rgba(255, 77, 82, 0.2)' :
                                      'rgba(59, 130, 246, 0.2)';
+                                     
                 
                 const card = document.createElement('a');
                 card.href = `tracking.html?id=${shipment.id}`;
@@ -516,6 +436,13 @@
               });
             }
           }
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+              e.preventDefault();
+              window.history.back();
+            }
+          });
+
         </script>
     </div>
    </main>

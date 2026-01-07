@@ -1,0 +1,34 @@
+{
+  "stats": [
+    {
+      "label": "Total Shipments",
+      "value": "1,247",
+      "trend": "↑ 12% from last month",
+      "trendColor": "#10b981"
+    },
+    {
+      "label": "Delayed Shipments",
+      "value": "23",
+      "trend": "Requires attention",
+      "trendColor": "#ef4444"
+    },
+    {
+      "label": "Air",
+      "value": "668",
+      "trend": "↑ 5% from last month",
+      "trendColor": "#F9BE1B"
+    },
+    {
+      "label": "Sea",
+      "value": "263",
+      "trend": "↑ 2% from last month",
+      "trendColor": "#60a5ff"
+    },
+    {
+      "label": "Road",
+      "value": "317",
+      "trend": "↑ 12% from last month",
+      "trendColor": "#969393"
+    }
+  ]
+}

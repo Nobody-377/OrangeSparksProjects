@@ -57,10 +57,16 @@
     }
 
     .company-name {
-      font-size: 20px;
+      font-size: 25px;
       font-weight: 700;
       margin: 0;
       color: #1e293b;
+    }
+
+    @media (max-width: 768px) {
+      .company-name {
+        display: none;
+      }
     }
 
     .nav-links {
@@ -197,7 +203,7 @@
        <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
        </svg>
       </div>
-      <h1 class="company-name">LogiTrack Pro</h1>
+      <h1 class="company-name">Logitrack</h1>
      </div>
      <nav class="nav-links"><a href="home.html" class="nav-btn">Home</a> <a href="dashboard.html" class="nav-btn">Dashboard</a> <a href="tracking.html" class="nav-btn">Track</a> <a href="help.html" class="nav-btn active">Help</a>
      </nav>
@@ -249,5 +255,17 @@
     </div>
    </main>
   </div>
+
+
+  <script>
+    document.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+              e.preventDefault();
+              window.history.back();
+            }
+          });
+  </script>
+
+  
 </body>
 </html>

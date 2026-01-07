@@ -58,10 +58,16 @@
     }
 
     .company-name {
-      font-size: 20px;
+      font-size: 25px;
       font-weight: 700;
       margin: 0;
       color: #1e293b;
+    }
+
+    @media (max-width: 768px) {
+      .company-name {
+        display: none;
+      }
     }
 
     .nav-links {
@@ -102,7 +108,7 @@
     }
 
     .hero-section {
-      background: linear-gradient(135deg, #3b82f6 0%, #3c6db3 100%);
+      background: linear-gradient(135deg, #3b82f6 0%, #3b92e8 100%);
       padding: 80px 24px;
       text-align: center;
       color: white;
@@ -235,7 +241,7 @@
       transform: translateY(-2px);
     }
 
-    @media (max-width: 740px) {
+    @media (max-width: 768px) {
       .nav-links {
         gap: 12px;
       }
@@ -254,7 +260,7 @@
        <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
        </svg>
       </div>
-      <h1 class="company-name">LogiTrack Pro</h1>
+      <h1 class="company-name">Logitrack</h1>
      </div>
      <nav class="nav-links"><a href="home.html" class="nav-btn active">Home</a> <a href="dashboard.html" class="nav-btn">Dashboard</a> <a href="tracking.html" class="nav-btn">Track</a> <a href="help.html" class="nav-btn">Help</a>
      </nav>
@@ -263,51 +269,50 @@
    <main class="main-content">
     <section class="hero-section">
      <div class="container">
-      <h2 style="font-size: 48px; font-weight: 900; margin: 0 0 16px 0;">TODAY'S LOGISTICS OVERVIEW</h2>
+      <h2 style="font-size: 48px; font-weight: 900; margin: 0 0 16px 0;">THIS MONTH'S LOGISTICS OVERVIEW</h2>
       <p style="font-size: 20px; margin: 0 0 8px 0; opacity: 0.95;">January 23, 2024</p>
       <p style="font-size: 18px; margin: 0 0 32px 0; opacity: 0.85;">Real-time tracking and updates for all shipments today</p><a href="dashboard.html" class="btn-primary" style="max-width: 300px;">View All Time Data</a>
      </div>
     </section>
     <section style="padding: 48px 24px; background-color: #f8fafc;">
      <div class="container">
-      <div class="stats-grid">
-       <div class="stat-card">
-        <p class="stat-label">New Shipments Today</p>
-        <p class="stat-value">1</p>
-        <p class="stat-trend" style="color: #3b82f6;">Active right now</p>
-       </div>
-       <div class="stat-card">
-        <p class="stat-label">In Transit Today</p>
-        <p class="stat-value">0</p>
-        <p class="stat-trend" style="color: #3b82f6;">Moving now</p>
-       </div>
-       <div class="stat-card">
-        <p class="stat-label">Deliveries Completed</p>
-        <p class="stat-value">0</p>
-        <p class="stat-trend" style="color: #10b981;">Successfully delivered</p>
-       </div>
-       <div class="stat-card">
-        <p class="stat-label">Processing Today</p>
-        <p class="stat-value">1</p>
-        <p class="stat-trend" style="color: #f59e0b;">Awaiting pickup</p>
-       </div>
-      </div>
-      <div style="margin-bottom: 24px;">
-       <h3 style="font-size: 24px; font-weight: 700; color: #1e293b; margin: 0 0 16px 0;">Today's Shipments</h3>
-      </div>
-      <div class="shipments-grid"><a href="tracking.html?id=SH-003" class="shipment-card">
-        <div class="shipment-header">
-         <div>
-          <p class="shipment-id">SH-003</p>
-          <p class="shipment-route">Seattle → Boston</p>
-         </div><span class="status-badge" style="background-color: rgba(245, 158, 11, 0.2); color: #f59e0b;"> Processing </span>
-        </div>
-        <div class="progress-bar">
-         <div class="progress-fill" style="width: 20%; background-color: #f59e0b;"></div>
-        </div><p class="shipment-location">Current: Seattle, WA</p></a>
+      <div class="stats-grid" id="statsGrid">
+       <p style="text-align: center; color: #64748b; padding: 48px;">Loading statistics...</p>
       </div>
      </div>
     </section>
+    <script>
+        // Load statistics from external JSON file
+        fetch('stats.json')
+          .then(response => response.json())
+          .then(data => {
+            const statsGrid = document.getElementById('statsGrid');
+            statsGrid.innerHTML = '';
+            
+            data.stats.forEach(stat => {
+              const statCard = document.createElement('div');
+              statCard.className = 'stat-card';
+              statCard.innerHTML = `
+                <p class="stat-label">${stat.label}</p>
+                <p class="stat-value">${stat.value}</p>
+                <p class="stat-trend" style="color: ${stat.trendColor};">${stat.trend}</p>
+              `;
+              statsGrid.appendChild(statCard);
+            });
+          })
+          .catch(error => {
+            console.error('Error loading stats:', error);
+            document.getElementById('statsGrid').innerHTML = '<p style="text-align: center; color: #ef4444; padding: 48px;">Error loading statistics.</p>';
+          });
+
+
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+              e.preventDefault();
+              window.history.back();
+            }
+          });
+      </script>
    </main>
   </div>
 </body>
