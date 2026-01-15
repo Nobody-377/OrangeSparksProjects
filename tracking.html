@@ -360,27 +360,28 @@
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
  <body>
   <div class="app-wrapper">
-   <header class="header">
-    <div class="header-content">
-     <div class="logo-section">
-      <div class="logo">
-       <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
-       </svg>
-      </div>
+    <header class="header">
+      <div class="header-content">
+      <div class="logo-section">
+        <div class="logo">
+         <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round"/> 
+          <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+         </svg>
+        </div>
       <h1 class="company-name">Logitrack</h1>
      </div>
-     <nav class="nav-links">
-      <a href="home.html" class="nav-btn">Home</a> <a href="dashboard.html" class="nav-btn">Dashboard</a> <a href="tracking.html" class="nav-btn active">Track</a> <a href="help.html" class="nav-btn">Help</a>
-     </nav>
+      <nav class="nav-links">
+       <a href="home.html" class="nav-btn">Home</a>
+       <a href="dashboard.html" class="nav-btn">Dashboard</a> 
+       <a href="tracking.html" class="nav-btn active">Track</a> 
+       <a href="help.html" class="nav-btn">Help</a>
+      </nav>
     </div>
-   </header>
+    </header>
    <main class="main-content">
     <div class="container" id="trackingView">
      <div style="text-align: center; margin-bottom: 48px;">
@@ -391,7 +392,8 @@
       <div class="stat-card">
        <form id="trackingForm">
         <div class="form-group">
-         <label class="form-label" for="trackingNumber">Tracking Number</label> <input type="text" id="trackingNumber" class="form-input" placeholder="e.g., SH-001" required>
+         <label class="form-label" for="trackingNumber">Tracking Number</label> 
+         <input type="text" id="trackingNumber" class="form-input" placeholder="e.g., SH-001" required>
         </div><button type="submit" class="btn-primary">Track Shipment</button>
        </form>
       </div>
@@ -411,46 +413,46 @@
   <script>
     let shipments = {};
 
-    // Get recently viewed shipments from localStorage
+    /* Get recently viewed shipments from localStorage */
     function getRecentlyViewed() {
       const recent = localStorage.getItem('recentlyViewedShipments');
       return recent ? JSON.parse(recent) : [];
     }
 
-    // Add shipment to recently viewed
+    /* Add shipment to recently viewed */
     function addToRecentlyViewed(shipmentId) {
       let recent = getRecentlyViewed();
-      // Remove if already exists
+    /* Remove if already exists */
       recent = recent.filter(id => id !== shipmentId);
       // Add to front
       recent.unshift(shipmentId);
-      // Keep only last 4
+    /* Keep only last 4 */
       recent = recent.slice(0, 4);
       localStorage.setItem('recentlyViewedShipments', JSON.stringify(recent));
     }
 
-    // Load shipments data from single tracking.json file
+    /* Load shipments data from single tracking.json file */
     fetch('shipments.json')
       .then(response => response.json())
       .then(data => {
-        // Convert shipments array to object with IDs as keys
+        /* Convert shipments array to object with IDs as keys */
         data.shipments.forEach(shipment => {
           shipments[shipment.id] = shipment;
         });
         
-        // Get recently viewed shipment IDs
+        /* Get recently viewed shipment IDs */
         const recentIds = getRecentlyViewed();
         
-        // If there are recently viewed shipments, show those
+        /* If there are recently viewed shipments, show those */
         if (recentIds.length > 0) {
           const recentShipments = recentIds.map(id => shipments[id]).filter(s => s);
           renderRecentShipments(recentShipments);
         } else {
-          // Otherwise show first 4 shipments
+        /* Otherwise show first 4 shipments */
           renderRecentShipments(data.shipments.slice(0, 4));
         }
         
-        // Check URL for shipment ID after data is loaded
+        /* Check URL for shipment ID after data is loaded */
         const urlParams = new URLSearchParams(window.location.search);
         const shipmentId = urlParams.get('id');
         if (shipmentId && shipments[shipmentId]) {
@@ -515,13 +517,13 @@
     });
 
     function generateTimeline(shipment) {
-      // Generate a dynamic timeline based on progress
+      /* Generate a dynamic timeline based on progress */
       const timeline = [];
       const parts = shipment.route.split(' → ');
       const origin = parts[0];
       const destination = parts[1];
       
-      // Step 1: Package Picked Up
+      /* Step 1: Package Picked Up */
       timeline.push({
         status: 'Package Picked Up',
         location: `${origin}`,
@@ -529,7 +531,7 @@
         completed: true
       });
       
-      // Step 2: In Transit
+      /* Step 2: In Transit */
       if (shipment.progress >= 20) {
         timeline.push({
           status: 'In Transit',
@@ -539,7 +541,7 @@
         });
       }
       
-      // Step 3: Out for Delivery
+      /* Step 3: Out for Delivery */
       timeline.push({
         status: 'Out for Delivery',
         location: `${destination}`,
@@ -547,7 +549,7 @@
         completed: shipment.status === 'Delivered'
       });
       
-      // Step 4: Delivered
+      /* Step 4: Delivered */
       timeline.push({
         status: 'Delivered',
         location: `${destination}`,

@@ -253,27 +253,39 @@
     }
   </style>
   <div class="app-wrapper">
-   <header class="header">
-    <div class="header-content">
-     <div class="logo-section">
-      <div class="logo">
-       <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
-       </svg>
+    <header class="header">
+      <div class="header-content">
+        <div class="logo-section">
+          <div class="logo">
+            <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round"/> 
+            <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h1 class="company-name">Logitrack</h1>
+        </div>
+      
+        <nav class="nav-links">
+        <a href="home.html" class="nav-btn active">Home</a> 
+        <a href="dashboard.html" class="nav-btn">Dashboard</a> 
+        <a href="tracking.html" class="nav-btn">Track</a> 
+        <a href="help.html" class="nav-btn">Help</a>
+        </nav>
+    
       </div>
-      <h1 class="company-name">Logitrack</h1>
-     </div>
-     <nav class="nav-links"><a href="home.html" class="nav-btn active">Home</a> <a href="dashboard.html" class="nav-btn">Dashboard</a> <a href="tracking.html" class="nav-btn">Track</a> <a href="help.html" class="nav-btn">Help</a>
-     </nav>
-    </div>
-   </header>
+    </header>
+   
    <main class="main-content">
+    
     <section class="hero-section">
      <div class="container">
       <h2 style="font-size: 48px; font-weight: 900; margin: 0 0 16px 0;">THIS MONTH'S LOGISTICS OVERVIEW</h2>
       <p style="font-size: 20px; margin: 0 0 8px 0; opacity: 0.95;">January 23, 2024</p>
-      <p style="font-size: 18px; margin: 0 0 32px 0; opacity: 0.85;">Real-time tracking and updates for all shipments today</p><a href="dashboard.html" class="btn-primary" style="max-width: 300px;">View All Time Data</a>
+      <p style="font-size: 18px; margin: 0 0 32px 0; opacity: 0.85;">Real-time tracking and updates for all shipments today</p>
+      <a href="dashboard.html" class="btn-primary" style="max-width: 300px;">View All Time Data</a>
      </div>
     </section>
+
     <section style="padding: 48px 24px; background-color: #f8fafc;">
      <div class="container">
       <div class="stats-grid" id="statsGrid">
@@ -281,6 +293,8 @@
       </div>
      </div>
     </section>
+
+
     <script>
         // Load statistics from external JSON file
         fetch('stats.json')
@@ -313,7 +327,10 @@
             }
           });
       </script>
+
+
    </main>
+   
   </div>
 </body>
 </html>

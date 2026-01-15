@@ -267,38 +267,84 @@
       }
     }
   </style>
+
+
   <div class="app-wrapper">
-   <header class="header">
-    <div class="header-content">
-     <div class="logo-section">
-      <div class="logo">
-       <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round" />
-       </svg>
-      </div>
-      <h1 class="company-name">Logitrack</h1>
-     </div>
-     <nav class="nav-links"><a href="home.html" class="nav-btn">Home</a> <a href="dashboard.html" class="nav-btn active">Dashboard</a> <a href="tracking.html" class="nav-btn">Track</a> <a href="help.html" class="nav-btn">Help</a>
+    <header class="header">
+      <div class="header-content">
+        <div class="logo-section">
+          <div class="logo">
+      
+        <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6L12 2L20 6V14L12 18L4 14V6Z" stroke="white" stroke-width="2" stroke-linejoin="round"/> 
+          <path d="M12 2V10M4 6L12 10L20 6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+
+          </div>
+          <h1 class="company-name">Logitrack</h1>
+        </div>
+
+     <nav class="nav-links">
+      <a href="home.html" class="nav-btn">Home</a> 
+      <a href="dashboard.html" class="nav-btn active">Dashboard</a> 
+      <a href="tracking.html" class="nav-btn">Track</a>
+      <a href="help.html" class="nav-btn">Help</a>
      </nav>
+
     </div>
+
+
+
+
+
    </header>
    <main class="main-content">
-    <div class="container">
-     <h2 class="page-title">Dashboard Overview</h2>
-     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 16px;">
-      <h3 style="font-size: 24px; font-weight: 700; color: #1e293b; margin: 0;">All Shipments</h3>
-      <form style="display: flex; gap: 8px;"><input type="text" id="shipmentSearch" class="form-input" placeholder="Search by ID, location, or carrier..."> <button type="submit" class="filter-btn" style="padding: 10px 16px;">
-        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="2" /> <path d="M11 11L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg></button>
+      <div class="container">
+        <h2 class="page-title">Dashboard Overview</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 16px;">
+        <h3 style="font-size: 24px; font-weight: 700; color: #1e293b; margin: 0;">All Shipments</h3>
+
+      <form style="display: flex; gap: 8px;">
+      <input type="text" id="shipmentSearch" class="form-input" placeholder="Search by ID, location, or carrier..."> 
+      <button type="submit" class="filter-btn" style="padding: 10px 16px;">
+      <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+        <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="2"/> 
+        <path d="M11 11L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      </button>
       </form>
-     </div>
-     <div class="filter-section">
-      <div class="filter-group"><span class="filter-label">Status</span> <button class="filter-btn active" data-filter="status" data-value="all">All</button> <button class="filter-btn" data-filter="status" data-value="In Transit">In Transit</button> <button class="filter-btn" data-filter="status" data-value="Delivered">Delivered</button> <button class="filter-btn" data-filter="status" data-value="Processing">Processing</button> <button class="filter-btn" data-filter="status" data-value="Delayed">Delayed</button>
+
       </div>
-      <div class="filter-group"><span class="filter-label">Date Range</span> <button class="filter-btn active" data-filter="date" data-value="all">All Time</button> <button class="filter-btn" data-filter="date" data-value="today">Today</button> <button class="filter-btn" data-filter="date" data-value="week">This Week</button> <button class="filter-btn" data-filter="date" data-value="month">This Month</button>
+
+
+      <div class="filter-section">
+      
+        <div class="filter-group">
+          <span class="filter-label">Status</span> 
+          <button class="filter-btn active" data-filter="status" data-value="all">All</button> 
+          <button class="filter-btn" data-filter="status" data-value="In Transit">In Transit</button> 
+          <button class="filter-btn" data-filter="status" data-value="Delivered">Delivered</button> 
+          <button class="filter-btn" data-filter="status" data-value="Processing">Processing</button> 
+          <button class="filter-btn" data-filter="status" data-value="Delayed">Delayed</button>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Date Range</span> 
+          <button class="filter-btn active" data-filter="date" data-value="all">All Time</button> 
+          <button class="filter-btn" data-filter="date" data-value="today">Today</button> 
+          <button class="filter-btn" data-filter="date" data-value="week">This Week</button> 
+          <button class="filter-btn" data-filter="date" data-value="month">This Month</button>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Sort By</span> 
+          <button class="filter-btn active" data-filter="sort" data-value="newest">Newest First</button> 
+          <button class="filter-btn" data-filter="sort" data-value="oldest">Oldest First</button>
+        </div>
+
       </div>
-      <div class="filter-group"><span class="filter-label">Sort By</span> <button class="filter-btn active" data-filter="sort" data-value="newest">Newest First</button> <button class="filter-btn" data-filter="sort" data-value="oldest">Oldest First</button>
-      </div>
-     </div>
+
+
      <div class="shipments-grid" id="shipmentsGrid">
       <p style="text-align: center; color: #64748b; padding: 48px;">Loading shipments...</p>
      </div>
@@ -311,13 +357,11 @@
 
           // Load shipments data from external JSON file
           let allShipments = [];
-
-          // Fetch shipment data from external JSON file
           fetch('shipments.json')
             .then(response => response.json())
             .then(data => {
               allShipments = data.shipments;
-              applyFilters(); // Initial render
+              applyFilters();
             })
             .catch(error => {
               console.error('Error loading shipments:', error);
@@ -355,10 +399,10 @@
             e.preventDefault();
           });
 
+
+          // Filter shipments
           function applyFilters() {
             const grid = document.getElementById('shipmentsGrid');
-            
-            // Filter shipments
             let filteredShipments = allShipments.filter(shipment => {
               // Status filter
               if (currentFilters.status !== 'all' && shipment.status !== currentFilters.status) {
@@ -408,7 +452,7 @@
               grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 48px;">No shipments found matching your filters.</p>';
             } else {
               filteredShipments.forEach(shipment => {
-                const statusBgColor = shipment.status === 'Delivered' ? 'rgba(16, 185, 129, 0.2)' :
+                const statusBgColor =shipment.status === 'Delivered' ? 'rgba(16, 185, 129, 0.2)' :
                                      shipment.status === 'Processing' ? 'rgba(245, 158, 11, 0.2)' :
                                      shipment.status ==='Delayed' ? 'rgba(255, 77, 82, 0.2)' :
                                      'rgba(59, 130, 246, 0.2)';
