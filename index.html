@@ -219,7 +219,6 @@
     /* Initialize users in localStorage if not exists */
     function initializeUsers() {
       if (!localStorage.getItem('users')) {
-        // Create a default demo user
         const users = {
           'demo@logitrack.com': {
             email: 'demo@logitrack.com',
@@ -263,7 +262,6 @@
       
     /* Verify credentials */
       if (verifyLogin(email, password)) {
-        // Store session
         setLoggedInSession(email);
         
     /* Redirect to dashboard */
